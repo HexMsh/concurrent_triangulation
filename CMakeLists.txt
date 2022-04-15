@@ -16,6 +16,8 @@ project(concurrent_triangulation VERSION 0.1 LANGUAGES CXX)
 option(WITH_TEST "Build test"                     OFF)
 option(BUILD_SHARED_LIBS ""                       ON)
 #==============================================================================
+find_package(gmds REQUIRED CONFIG COMPONENTS IG IO)
+
 set(INC_FILES
         inc/ConcurrentTriangulation.h
         )
@@ -23,14 +25,14 @@ set(SRC_FILES
         src/ConcurrentTriangulation.cpp
         )
 #==============================================================================
-add_library(concurrent_triangulation ${INC_FILES} ${SRC_FILES})
+add_library(concurrent_triangulation ${INC_FILES} ${SRC_FILES} )
 #==============================================================================
 # TARGET DEFINITION
 #==============================================================================
 include(GNUInstallDirs)
 
 #LIBRARY TO INSTALL
-target_link_libraries(concurrent_triangulation PUBLIC)
+target_link_libraries(concurrent_triangulation PUBLIC GMDSIg)
 
 target_compile_features(concurrent_triangulation PUBLIC cxx_std_14)
 
